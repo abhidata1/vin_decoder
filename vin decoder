@@ -1,0 +1,39 @@
+import requests
+import secrets
+import json
+
+vin=input('Please enter your 17 digit VIN')
+
+url = f'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/{vin}?format=json'
+
+r = requests.get(url).json()
+
+vin=r['SearchCriteria']
+
+year=r['Results'][0]['ModelYear']
+
+make=r['Results'][0]['Make']
+
+model=r['Results'][0]['Model']
+
+engine=r['Results'][0]['EngineCylinders']
+
+hp=r['Results'][0]['EngineHP']
+
+bodystyle=r['Results'][0]['BodyClass']
+
+print('', vin)
+print('\nYear:', year)
+print('\nMake:', make)
+print('\nModel:', model)
+print('\nEngine: V', engine)
+print('\nHorsepower:', hp)
+print('\nBodystyle:', bodystyle)
+
+
+
+
+
+
+
+
